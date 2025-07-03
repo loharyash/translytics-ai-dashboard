@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,8 +9,9 @@ import { Slider } from '@/components/ui/slider';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Upload, Plus, Download, FileText, MessageCircle } from 'lucide-react';
+import { Upload, Plus, Download, FileText, MessageCircle, BarChart3 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 interface TextSegment {
   id: string;
@@ -24,6 +24,7 @@ interface TextSegment {
 }
 
 const Index = () => {
+  const navigate = useNavigate();
   const [segments, setSegments] = useState<TextSegment[]>([
     { id: '1', source: '', target: '' },
     { id: '2', source: '', target: '' },
@@ -245,10 +246,21 @@ const Index = () => {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle>Evaluation Results</CardTitle>
-                  <Button onClick={exportResults} variant="outline" size="sm">
-                    <Download className="w-4 h-4 mr-2" />
-                    Export CSV
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button 
+                      onClick={() => navigate('/results')} 
+                      variant="outline" 
+                      size="sm"
+                      className="bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
+                    >
+                      <BarChart3 className="w-4 h-4 mr-2" />
+                      Detailed Analysis
+                    </Button>
+                    <Button onClick={exportResults} variant="outline" size="sm">
+                      <Download className="w-4 h-4 mr-2" />
+                      Export CSV
+                    </Button>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <Tabs defaultValue="results">
