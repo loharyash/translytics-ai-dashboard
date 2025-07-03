@@ -9,7 +9,7 @@ import { Slider } from '@/components/ui/slider';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Upload, Plus, Download, FileText, MessageCircle, BarChart3 } from 'lucide-react';
+import { Upload, Plus, Download, FileText, MessageCircle, BarChart3, Zap } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -127,9 +127,29 @@ const Index = () => {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Evaluate and fix ✔️ the quality of translations using top-tier LLMs
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 mb-4">
             Professional AI-powered translation quality assessment with detailed scoring and corrections
           </p>
+          
+          {/* Quick Access to New Evaluator */}
+          <div className="flex gap-3">
+            <Button 
+              onClick={() => navigate('/evaluator')}
+              className="bg-green-600 hover:bg-green-700 text-white"
+              size="sm"
+            >
+              <Zap className="w-4 h-4 mr-2" />
+              Quick CSV Evaluator
+            </Button>
+            <Button 
+              onClick={() => navigate('/results')}
+              variant="outline"
+              size="sm"
+            >
+              <BarChart3 className="w-4 h-4 mr-2" />
+              View Sample Results
+            </Button>
+          </div>
         </div>
       </div>
 
